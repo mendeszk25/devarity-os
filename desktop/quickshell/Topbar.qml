@@ -1,3 +1,5 @@
+// Devarity Shell 0.2 — modular CRT topbar.
+// Purely visual micro-lines: labels are edition metadata, not fabricated telemetry.
 import QtQuick
 import Quickshell
 import "Theme.js" as Theme
@@ -10,7 +12,7 @@ PanelWindow {
 
     screen: modelData
     anchors { top: true; left: true; right: true }
-    implicitHeight: 42
+    implicitHeight: 50
     color: "transparent"
     exclusionMode: ExclusionMode.Ignore
 
@@ -25,56 +27,134 @@ PanelWindow {
         border.color: Theme.subtle
         border.width: 1
 
-        Rectangle { width: parent.width; height: 2; color: Theme.blue; opacity: 0.7 }
+        // Small static interference marks. No flicker or heavy GPU effects.
+        Repeater {
+            model: Math.max(0, Math.floor(bar.width / 120))
+            Rectangle {
+                required property int index
+                x: index * 120 + 60
+                y: 1
+                width: 1
+                height: 3
+                color: Theme.blue
+                opacity: 0.24
+            }
+        }
 
         Rectangle {
-            id: menuButton
-            x: 10; y: 6
-            width: 146; height: 29
-            color: bar.menuOpen ? Theme.raised : Theme.surface
-            border.color: bar.menuOpen ? Theme.blue : Theme.subtle
-            radius: 2
-            Text {
-                anchors.centerIn: parent
-                color: Theme.blue
-                font.family: Theme.mono
-                font.bold: true
-                font.pixelSize: 12
-                text: "▣  DEVARITY_"
+            anchors.bottom: parent.bottom
+            width: parent.width
+            height: 1
+            color: Theme.blue
+            opacity: 0.5
+        }
+
+        Row {
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: 10
+
+            Rectangle {
+                id: brand
+                width: 168
+                height: 34
+                radius: 2
+                color: bar.menuOpen || brandMouse.containsMouse ? Theme.raised : Theme.surface
+                border.width: 1
+                border.color: bar.menuOpen ? Theme.blue : Theme.subtle
+
+                Rectangle {
+                    x: 0; y: 0
+                    width: 3
+                    height: parent.height
+                    color: Theme.blue
+                }
+
+                Column {
+                    anchors.centerIn: parent
+                    spacing: 0
+                    Text {
+                        text: "DEVARITY_OS"
+                        font.family: Theme.mono; font.pixelSize: 13; font.bold: true
+                        color: Theme.blue
+                    }
+                    Text {
+                        text: "SYSTEM INTERFACE / 0.2"
+                        font.family: Theme.mono; font.pixelSize: 8
+                        color: Theme.muted
+                    }
+                }
+
+                MouseArea {
+                    id: brandMouse
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: bar.menuRequested()
+                }
+                Behavior on color { ColorAnimation { duration: 110 } }
             }
-            MouseArea {
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                onClicked: bar.menuRequested()
+
+            Column {
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 3
+                visible: bar.width > 780
+                Text {
+                    text: "DVR // SYSTEM-01"
+                    font.family: Theme.mono; font.pixelSize: 9
+                    color: Theme.bone
+                }
+                Text {
+                    text: "ARCH / EXPERIMENTAL"
+                    font.family: Theme.mono; font.pixelSize: 8
+                    color: Theme.muted
+                }
             }
         }
 
         Row {
             anchors.centerIn: parent
-            spacing: 14
+            spacing: 10
+            visible: bar.width > 1110
+
+            Rectangle { width: 16; height: 1; color: Theme.blue; anchors.verticalCenter: parent.verticalCenter }
             Text {
-                text: "01 // WAYLAND"
+                text: "WAYLAND  //  LILITH"
                 font.family: Theme.mono
                 font.pixelSize: 11
+                font.bold: true
                 color: Theme.bone
             }
-            Rectangle { width: 1; height: 13; color: Theme.subtle }
-            Text {
-                text: "LILITH / EXPERIMENTAL"
-                font.family: Theme.mono
-                font.pixelSize: 11
-                color: Theme.muted
-            }
+            Rectangle { width: 16; height: 1; color: Theme.blue; anchors.verticalCenter: parent.verticalCenter }
         }
 
-        Text {
+        Row {
             anchors.right: parent.right
-            anchors.rightMargin: 15
+            anchors.rightMargin: 14
             anchors.verticalCenter: parent.verticalCenter
-            text: Qt.formatDateTime(clock.date, "dd.MM.yy  hh:mm")
-            font.family: Theme.mono
-            font.pixelSize: 11
-            color: Theme.blue
+            spacing: 12
+            Rectangle {
+                width: 1; height: 25
+                color: Theme.subtle
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Column {
+                spacing: 3
+                Text {
+                    text: Qt.formatDateTime(clock.date, "dd.MM.yyyy")
+                    color: Theme.muted
+                    font.family: Theme.mono
+                    font.pixelSize: 9
+                }
+                Text {
+                    text: Qt.formatDateTime(clock.date, "hh:mm")
+                    color: Theme.blue
+                    font.family: Theme.mono
+                    font.bold: true
+                    font.pixelSize: 13
+                }
+            }
         }
     }
 }
