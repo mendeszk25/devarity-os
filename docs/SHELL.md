@@ -1,12 +1,12 @@
-# Devarity Shell v0.2 — primeiro refinamento visual
+# Devarity Shell v0.3 — menu industrial CRT e navegação por teclado
 
-**Status:** barra e dock originais da v0.1 apareceram na captura do usuário em 2026-11-03. Esta v0.2 foi refinada a partir da captura, mas **ainda precisa de teste de execução no hardware**. O menu de aplicativos não foi confirmado em screenshot.
+**Status:** barra e dock originais da v0.1 apareceram na captura do usuário em 2026-11-03. A v0.2 foi confirmada visualmente por capturas do usuário: barra, dock, menu com 76 entradas e Kitty aberto. A pesquisa e abertura de aplicativos diretamente pela lista ainda não foram confirmadas. Esta v0.3 exige teste em runtime no hardware.
 
 ## Entregáveis
 
 - `Topbar.qml`: layout técnico em blocos, rótulo de versão, relógio com hierarquia, detalhes CRT estáticos.
 - `Dock.qml`: barra industrial com quatro ações **reais**: Kitty, Dolphin, menu e Fuzzel; hover contido.
-- `AppMenu.qml`: mantém implementação v0.1 de catálogo real de arquivos desktop e busca.
+- `AppMenu.qml`: visual CRT com hierarquia técnica, números de entrada, filtro de aplicativos reais, seleção por setas, Enter e Esc.
 - `shell.qml`: coordena janelas Quickshell por monitor, sem autostart.
 - `Theme.js`: paleta provisória; cores podem mudar após aprofundamento das referências.
 - `tests/test_shell_layout.py`: testes de estrutura, não comprovam renderização Qt/QML.
@@ -29,8 +29,8 @@ Não execute `sudo make install` nem edite as sessões originais.
 
 ## QA que ainda falta
 
-- Menu não está visível no screenshot recebido.
-- Falta validar a atualização visual 0.2 em monitores 1920×1080 e 1366×768.
+- Menu v0.2 exibido em screenshot, com lista de 76 entradas. Pesquisa, Enter e Esc ainda precisam de validação.
+- Falta validar a atualização visual 0.3 em monitores 1920×1080 e 1366×768.
 - Falta medir RAM/CPU, som, screencopy e interação com layer-shell.
 - Meta de 500 MiB em repouso não demonstrada.
 - Recursos de glitch animado, travamento e boot serão feitos separadamente, com efeitos ajustáveis e sem enganar o usuário sobre erros de sistema.

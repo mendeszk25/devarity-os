@@ -27,6 +27,13 @@ class ShellStructureTests(unittest.TestCase):
         self.assertIn("ScriptModel", content)
         self.assertNotIn('["sh", "-c"', content)
 
+    def test_menu_keyboard_shortcuts(self):
+        content = (BASE / "AppMenu.qml").read_text()
+        for action in ("Keys.onEscapePressed", "Keys.onDownPressed", "Keys.onUpPressed", "onAccepted"):
+            self.assertIn(action, content)
+        self.assertIn("ListView.isCurrentItem", content)
+        self.assertIn("menu.launch(entryRow.modelData)", content)
+
     def test_launcher_and_safety(self):
         dock = (BASE / "Dock.qml").read_text()
         for cmd in ("kitty", "dolphin", "fuzzel"):
