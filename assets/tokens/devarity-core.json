@@ -1,0 +1,28 @@
+{
+  "version": "0.1.0-draft",
+  "identity": "Cyber Grunge / Retro Hacker / Digital Brutalism / Y2K Underground",
+  "palette": {
+    "void": "#090B0E",
+    "graphite": "#20252B",
+    "bone": "#E6E9E8",
+    "crt_blue": "#8BC9EA",
+    "muted": "#71808E",
+    "olive": "#ADB59A"
+  },
+  "motion": {
+    "window_open_s": 0.22,
+    "window_close_s": 0.2,
+    "tag_s": 0.24,
+    "canvas_s": 0.36,
+    "zoom_s": 0.34
+  },
+  "target": {
+    "idle_ram_mib": "<= 500 (meta nao validada)",
+    "gpu": "Intel/AMD primeiro"
+  },
+  "accessibility": {
+    "reduced_motion": true,
+    "glitch_effect": "opt-in",
+    "crt_flicker": "off-by-default"
+  }
+}

@@ -1,0 +1,23 @@
+# Clones e compilação
+upstream/
+worktrees/
+build/
+archiso/profile/
+__pycache__/
+*.pyc
+*.iso
+*.qcow2
+*.log
+.DS_Store
+
+# Dados locais, credenciais e artefatos sensíveis
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+.cache/
