@@ -57,7 +57,7 @@ Após instalar `archiso` e reservar espaço suficiente, preferencialmente em um 
 
 A ISO Foundation inicial não inclui ainda o Lilith, o desktop Devarity ou instalador gráfico. A execução desses comandos é manual; a construção pode consumir bastante armazenamento.
 
-## Devarity Shell v0.3 — protótipo QML\n\nPrimeiro protótipo da barra, dock e menu com entradas de aplicativos reais. **Não testado em runtime no Lilith ainda.** Instruções seguras em [docs/SHELL.md](docs/SHELL.md). Para executar dentro da sessão experimental Wayland use `./scripts/20-testar-shell.sh`. Nenhum serviço ou autostart é configurado.\n\n## Documentação
+## Devarity Shell v0.5 — logo oficial\n\nBarra, dock e menu testados manualmente até a v0.4; na v0.5, a **logo oficial enviada pelo criador** foi integrada às três superfícies. A nova integração da marca ainda precisa de teste visual. Confira o [Brand Pack](assets/branding/README.md) e as instruções seguras em [docs/SHELL.md](docs/SHELL.md). Para executar dentro da sessão experimental Wayland use `./scripts/20-testar-shell.sh`. Nenhum serviço ou autostart é configurado.\n\n## Documentação
 
 - [Arquitetura](docs/ARQUITETURA.md)
 - [Auditoria do Lilith](docs/AUDITORIA-LILITH.md)

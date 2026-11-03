@@ -43,6 +43,17 @@ class ShellStructureTests(unittest.TestCase):
         self.assertIn("Keys.onUpPressed", content)
         self.assertIn("onAccepted", content)
 
+    def test_brand_v05_present(self):
+        brand = (BASE / "BrandMark.qml").read_text()
+        self.assertIn("devarity-mark-light.png", brand)
+        self.assertIn("devarity-mark-dark.png", brand)
+        for comp in ("Topbar", "Dock", "AppMenu"):
+            self.assertIn("BrandMark", (BASE / f"{comp}.qml").read_text())
+        menu = (BASE / "AppMenu.qml").read_text()
+        self.assertIn("entry.execute()", menu)
+        self.assertIn("Keys.onDownPressed", menu)
+        self.assertIn("onAccepted", menu)
+
     def test_launcher_and_safety(self):
         dock = (BASE / "Dock.qml").read_text()
         for cmd in ("kitty", "dolphin", "fuzzel"):

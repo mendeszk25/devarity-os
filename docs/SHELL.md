@@ -1,38 +1,33 @@
-# Devarity Shell v0.4 — legibilidade e feedback de busca
+# Devarity Shell v0.5 — Brand Integration
 
-**Status:** barra e dock originais da v0.1 apareceram na captura do usuário em 2026-11-03. A v0.2 foi confirmada visualmente por capturas do usuário: barra, dock, menu com 76 entradas e Kitty aberto. O usuário confirmou que a busca por kitty filtra e que Enter abre o aplicativo selecionado. A v0.4 ainda precisa ser testada graficamente.
+O usuário confirmou o funcionamento da v0.4, incluindo busca e lançamento do Kitty. A v0.5 integra pela primeira vez a logo oficial no desktop, porém **ainda não foi testada graficamente no host**.
 
-## Entregáveis
+## Novidades
 
-- `Topbar.qml`: layout técnico em blocos, rótulo de versão, relógio com hierarquia, detalhes CRT estáticos.
-- `Dock.qml`: barra industrial com quatro ações **reais**: Kitty, Dolphin, menu e Fuzzel; hover contido.
-- `AppMenu.qml`: preserva pesquisa e Enter já testados, aumenta a legibilidade, mostra mensagem para buscas sem resultado e evita cortar a última linha da lista.
-- `shell.qml`: coordena janelas Quickshell por monitor, sem autostart.
-- `Theme.js`: paleta provisória; cores podem mudar após aprofundamento das referências.
-- `tests/test_shell_layout.py`: testes de estrutura, não comprovam renderização Qt/QML.
+- `BrandMark.qml`: componente de imagem reutilizável, carregando ativos PNG transparentes de 64×64.
+- `Topbar.qml`: logo ao lado do wordmark e atualização do marcador para v0.5.
+- `Dock.qml`: miniatura da marca ao lado de Quick Access; os quatro botões não mudaram.
+- `AppMenu.qml`: substitui `D/` pelo emblema oficial, sem mudar a busca nem Enter.
+- `tests/test_brand_assets.py`: valida assinaturas PNG e resolução.
+- `assets/branding/README.md`: regras de utilização da marca.
 
-## Testar sem alterar sua sessão original
+## Teste no Arch
 
-1. Dentro do Devarity Lilith experimental, esconda a barra original com **Super+B**, se necessário.
-2. No clone do repositório GitHub, execute:
+Na sessão experimental do Devarity Lilith, com barra nativa oculta (se necessário), encerre Quickshell com Ctrl+C e execute:
 
 ```bash
+cd /mnt/ssd-extra/Devarity-OS/devarity-os-github
 git pull --ff-only
 ./scripts/20-testar-shell.sh
 ```
 
-3. Encerrar somente shell: **Ctrl+C** no terminal do script.
-4. Se tiver erros QML, envie saída do terminal.
-5. Testar o menu: clicar em **DEVARITY_OS** ou **APPS**, procurar um aplicativo, pressionar Enter, fechar com Esc.
+Se a marca não aparecer, envie a saída do terminal. Não execute `sudo make install`; nenhuma mudança de login ou autostart é necessária.
 
-Não execute `sudo make install` nem edite as sessões originais.
+## Verificação
 
-## QA que ainda falta
+1. Logo aparece na topbar, no menu e no dock.
+2. Menu filtra `kitty` e Enter continua iniciando o aplicativo.
+3. Todos os controles e a disposição funcionam em 1920×1080 e 1366×768.
+4. Os arquivos PNG devem ser carregados sem warnings de path, URL ou decodificação.
 
-- Menu v0.3 exibido em screenshot com 76 entradas; filtro por kitty e Enter confirmados. Setas e Esc ainda precisam de teste específico.
-- Falta validar a atualização visual 0.4 em monitores 1920×1080 e 1366×768.
-- Falta medir RAM/CPU, som, screencopy e interação com layer-shell.
-- Meta de 500 MiB em repouso não demonstrada.
-- Recursos de glitch animado, travamento e boot serão feitos separadamente, com efeitos ajustáveis e sem enganar o usuário sobre erros de sistema.
-
-Checklist completo: [checkpoint de QA](checkpoints/2026-11-03-shell-visual-qa.md).
+A renderização QML ainda depende de testes no computador do usuário; o CI somente cobre verificações estáticas.

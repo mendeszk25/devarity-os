@@ -1,4 +1,4 @@
-// Devarity Shell 0.2 — modular CRT topbar.
+// Devarity Shell 0.5 — official brand integration.
 // Purely visual micro-lines: labels are edition metadata, not fabricated telemetry.
 import QtQuick
 import Quickshell
@@ -57,7 +57,7 @@ PanelWindow {
 
             Rectangle {
                 id: brand
-                width: 168
+                width: 200
                 height: 34
                 radius: 2
                 color: bar.menuOpen || brandMouse.containsMouse ? Theme.raised : Theme.surface
@@ -71,18 +71,25 @@ PanelWindow {
                     color: Theme.blue
                 }
 
-                Column {
-                    anchors.centerIn: parent
-                    spacing: 0
-                    Text {
-                        text: "DEVARITY_OS"
-                        font.family: Theme.mono; font.pixelSize: 13; font.bold: true
-                        color: Theme.blue
-                    }
-                    Text {
-                        text: "SYSTEM INTERFACE / 0.4"
-                        font.family: Theme.mono; font.pixelSize: 8
-                        color: Theme.muted
+                Row {
+                    anchors.left: parent.left
+                    anchors.leftMargin: 6
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 5
+                    BrandMark { width: 36; height: 32 }
+                    Column {
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 1
+                        Text {
+                            text: "DEVARITY_OS"
+                            font.family: Theme.mono; font.pixelSize: 13; font.bold: true
+                            color: Theme.bone
+                        }
+                        Text {
+                            text: "SYSTEM INTERFACE / 0.5"
+                            font.family: Theme.mono; font.pixelSize: 8
+                            color: Theme.muted
+                        }
                     }
                 }
 
