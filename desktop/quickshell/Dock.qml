@@ -1,4 +1,4 @@
-// Devarity Shell 0.2 — compact industrial command dock.
+// Devarity Shell 0.4 — compact industrial command dock.
 // Four real actions, no placeholder buttons.
 import QtQuick
 import Quickshell
@@ -15,6 +15,7 @@ PanelWindow {
     implicitWidth: Math.min(464, Math.max(260, modelData.width - 28))
     implicitHeight: 84
     color: "transparent"
+    // Intentionally overlays the floating canvas; reserve-zone behavior needs Lilith-specific testing.
     exclusionMode: ExclusionMode.Ignore
 
     Rectangle {

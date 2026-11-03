@@ -80,7 +80,7 @@ PanelWindow {
                         color: Theme.blue
                     }
                     Text {
-                        text: "SYSTEM INTERFACE / 0.3"
+                        text: "SYSTEM INTERFACE / 0.4"
                         font.family: Theme.mono; font.pixelSize: 8
                         color: Theme.muted
                     }

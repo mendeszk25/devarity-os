@@ -1,4 +1,4 @@
-// DEVARITY OS / APPLICATION INDEX v0.3
+// DEVARITY OS / APPLICATION INDEX v0.4
 // Offline local desktop entries, no external network or shell string interpolation.
 import QtQuick
 import Quickshell
@@ -91,7 +91,7 @@ PanelWindow {
                         color: Theme.bone
                     }
                     Text {
-                        text: "LOCAL CATALOG  /  DVR.03"
+                        text: "LOCAL CATALOG  /  DVR.04"
                         font.family: Theme.mono
                         font.pixelSize: 9
                         color: Theme.muted
@@ -186,7 +186,7 @@ PanelWindow {
                     verticalAlignment: Text.AlignVCenter
                     text: "SEARCH APPLICATIONS_"
                     font.family: Theme.mono
-                    font.pixelSize: 11
+                    font.pixelSize: 12
                     color: Theme.muted
                     visible: search.text.length === 0
                     enabled: false
@@ -210,12 +210,21 @@ PanelWindow {
             ListView {
                 id: appList
                 width: parent.width
-                height: Math.max(40, parent.height - 202)
+                height: Math.max(0, Math.floor(Math.max(0, parent.height - 202) / 52) * 52)
                 model: filtered
                 currentIndex: 0
                 clip: true
                 spacing: 3
                 boundsBehavior: Flickable.StopAtBounds
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "NO MATCHES // REVISE SEARCH_"
+                    visible: filtered.values.length === 0
+                    color: Theme.muted
+                    font.family: Theme.mono
+                    font.pixelSize: 11
+                }
 
                 delegate: Rectangle {
                     id: entryRow
@@ -258,7 +267,7 @@ PanelWindow {
                             elide: Text.ElideRight
                             color: Theme.bone
                             font.family: Theme.mono
-                            font.pixelSize: 12
+                            font.pixelSize: 13
                         }
                     }
                     MouseArea {
@@ -279,7 +288,7 @@ PanelWindow {
                 width: parent.width
                 spacing: 8
                 Text {
-                    text: "↑↓ SELECT  /  ENTER EXECUTE  /  ESC CLOSE"
+                    text: "↑↓ SELECT / ENTER OPEN / ESC CLOSE"
                     font.family: Theme.mono
                     font.pixelSize: 9
                     color: Theme.muted
