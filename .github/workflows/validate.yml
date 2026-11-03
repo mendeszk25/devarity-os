@@ -1,0 +1,17 @@
+name: Foundation validation
+on:
+  push:
+  pull_request:
+jobs:
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python and design tokens
+        run: |
+          python3 -m json.tool assets/tokens/devarity-core.json >/dev/null
+          python3 -m py_compile scripts/aplicar-patch.py
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Validate Bash syntax
+        run: |
+          for file in scripts/*.sh; do bash -n "$file"; done
