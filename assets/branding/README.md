@@ -4,7 +4,7 @@ A logo foi enviada e aprovada pelo criador do Devarity OS. O símbolo com divis�
 
 ## Assets publicados
 
-- `devarity-mark-light.png`: branco/transparente, otimizado em 64×64 para interfaces escuras.
+- `devarity-mark-light.png`: branco/transparente, otimizado em 64×64 para interfaces escuras, agora em PNG RGBA 8-bit para compatibilidade.
 - `devarity-mark-dark.png`: preto/transparente, otimizado em 64×64 para interfaces claras.
 
 São representações pequenas derivadas das artes originais fornecidas. Os 4 arquivos de alta resolução continuam como fonte de referência, fora do repositório. As duas versões com efeito de glitch são referências de motion, não logos estáticas para widgets.

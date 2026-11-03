@@ -47,6 +47,9 @@ class ShellStructureTests(unittest.TestCase):
         brand = (BASE / "BrandMark.qml").read_text()
         self.assertIn("devarity-mark-light.png", brand)
         self.assertIn("devarity-mark-dark.png", brand)
+        self.assertIn("Quickshell.shellPath", brand)
+        self.assertIn("Image.Error", brand)
+        self.assertIn("bitmap.status !== Image.Ready", brand)
         for comp in ("Topbar", "Dock", "AppMenu"):
             self.assertIn("BrandMark", (BASE / f"{comp}.qml").read_text())
         menu = (BASE / "AppMenu.qml").read_text()

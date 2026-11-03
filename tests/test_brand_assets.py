@@ -13,6 +13,10 @@ class BrandingTests(unittest.TestCase):
             self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
             self.assertEqual(struct.unpack(">II", data[16:24]), (64,64))
             self.assertLess(len(data), 12000)
+            # The light mark used by the UI should be standard 8-bit RGBA PNG.
+            if name == "devarity-mark-light.png":
+                self.assertEqual(data[24], 8)  # bit depth
+                self.assertEqual(data[25], 6)  # PNG color type RGBA
 
     def test_documentation(self):
         self.assertIn("Devarity OS", (ASSETS / "README.md").read_text())
