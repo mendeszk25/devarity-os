@@ -1,4 +1,4 @@
-// Devarity Shell 0.5 — official brand integration.
+// Devarity Shell 0.6 — underground technical identity.
 // Purely visual micro-lines: labels are edition metadata, not fabricated telemetry.
 import QtQuick
 import Quickshell
@@ -86,7 +86,7 @@ PanelWindow {
                             color: Theme.bone
                         }
                         Text {
-                            text: "SYSTEM INTERFACE / 0.5"
+                            text: "SYSTEM INTERFACE / 0.6"
                             font.family: Theme.mono; font.pixelSize: 8
                             color: Theme.muted
                         }
@@ -108,12 +108,12 @@ PanelWindow {
                 spacing: 3
                 visible: bar.width > 780
                 Text {
-                    text: "DVR // SYSTEM-01"
+                    text: "DVR // UNDERGROUND"
                     font.family: Theme.mono; font.pixelSize: 9
                     color: Theme.bone
                 }
                 Text {
-                    text: "ARCH / EXPERIMENTAL"
+                    text: "ARCH / ALPHA PROFILE"
                     font.family: Theme.mono; font.pixelSize: 8
                     color: Theme.muted
                 }
@@ -127,7 +127,7 @@ PanelWindow {
 
             Rectangle { width: 16; height: 1; color: Theme.blue; anchors.verticalCenter: parent.verticalCenter }
             Text {
-                text: "WAYLAND  //  LILITH"
+                text: "WAYLAND  /  LILITH  /  DVR"
                 font.family: Theme.mono
                 font.pixelSize: 11
                 font.bold: true
@@ -164,4 +164,5 @@ PanelWindow {
             }
         }
     }
+    TechFrame { anchors.fill: parent; compact: true }
 }

@@ -1,4 +1,4 @@
-// DEVARITY OS / APPLICATION INDEX v0.5
+// DEVARITY OS / APPLICATION INDEX v0.6
 // Offline local desktop entries, no external network or shell string interpolation.
 import QtQuick
 import Quickshell
@@ -87,7 +87,7 @@ PanelWindow {
                         color: Theme.bone
                     }
                     Text {
-                        text: "LOCAL CATALOG  /  DVR.05"
+                        text: "LOCAL CATALOG  /  DVR.06"
                         font.family: Theme.mono
                         font.pixelSize: 9
                         color: Theme.muted
@@ -125,7 +125,7 @@ PanelWindow {
                 height: 17
                 spacing: 8
                 Text {
-                    text: "SYS://APPLICATIONS"
+                    text: "SYS://UNDERGROUND/APPS"
                     color: Theme.blue
                     font.pixelSize: 10
                     font.family: Theme.mono
@@ -292,4 +292,5 @@ PanelWindow {
             }
         }
     }
+    TechFrame { anchors.fill: parent; compact: false }
 }

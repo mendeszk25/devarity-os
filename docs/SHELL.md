@@ -1,34 +1,33 @@
-# Devarity Shell v0.5.1 — correção do carregamento da logo
+# Devarity Shell v0.6 — Underground Interface (primeira iteração)
 
-Após o teste da v0.5 em 03/11/2026, a captura mostrou **espaços vazios onde a marca deveria aparecer** na Topbar e no Dock. A aplicação em si renderiza, mas os PNGs não estavam visíveis. A causa precisa ainda ser confirmada com os logs do Quickshell.
+**Estado:** v0.5.1 validada visualmente pelo usuário, com logo visível na Topbar e Dock. A marca dentro do menu ainda não foi comprovada na captura. A v0.6 é uma modificação gráfica incremental e necessita de teste manual em Wayland.
 
-## Mudanças desta revisão
+## Alterações v0.6
 
-- Substituição do PNG claro por uma versão **RGBA 8-bit** (tipo PNG 6) do mesmo desenho, preservando a transparência.
-- A URL agora é construída com `Quickshell.shellPath()`, independentemente do diretório de onde o comando foi iniciado.
-- Carregamento síncrono de uma imagem pequena para simplificar a fase de diagnóstico.
-- `BrandMark.qml` exibe `D/` como fallback quando a imagem não está pronta, evitando áreas completamente vazias.
-- Se o Qt não conseguir ler a imagem, o Quickshell exibirá `[DEVARITY][BRAND] Failed loading logo:` no terminal.
-- Não houve mudança no compositor Lilith, na barra, nos atalhos, no instalador ou no login.
+- `TechFrame.qml`: moldura gráfica reutilizável com cantos industriais, barra de pequenos segmentos e detalhe inclinado derivado do corte da logo.
+- `Topbar.qml`: edição 0.6, identificação Underground e composição tipográfica ajustada.
+- `Dock.qml`: ornamentos compartilhados e marcador `DVR/04`.
+- `AppMenu.qml`: microtipografia `SYS://UNDERGROUND/APPS`, marcação `DVR.06` e moldura técnica.
 
-## Teste local
+## Restrições
 
-Encerre a shell anterior com `Ctrl+C` e, na sessão experimental Lilith, execute:
+- Efeitos **estáticos**, sem animação contínua, shader ou ruído calculado por frame.
+- Não mudar comportamento de busca, Enter, Fuzzel, Dolphin e Kitty.
+- Não editar arquivos do Lilith em C, greeter, bootloader ou autostart.
+- A aparência ainda é uma base; evitar afirmar que o design Cyber Grunge completo está concluído.
+
+## Testar na sessão experimental
+
+Encerre o Quickshell da v0.5.1 com `Ctrl+C` e, dentro do Lilith de teste:
 
 ```bash
 cd /mnt/ssd-extra/Devarity-OS/devarity-os-github
 git pull --ff-only
-./scripts/20-testar-shell.sh 2>&1 | tee /tmp/devarity-shell-brand.log
+./scripts/20-testar-shell.sh
 ```
 
-Abra o menu para confirmar os três pontos de uso: Topbar, Dock e Application Index. Confira se o símbolo branco aparece; caso apareça apenas `D/`, envie linhas relacionadas ao erro:
+Valide a logo na barra, dock **e menu aberto**. Digite `kitty`, pressione Enter, volte ao menu, teste Escape, botões TERM/FILES/SEARCH e confira o comportamento nas duas telas. Se houver warnings, cole a saída do terminal.
 
-```bash
-grep -iE 'DEVARITY.*BRAND|Failed loading|Image|png' /tmp/devarity-shell-brand.log | tail -n 30
-```
+## Critérios para a v0.7
 
-O `tee` grava somente logs da shell experimental, não instala nada nem modifica seu sistema.
-
-## Limites
-
-A nova versão **ainda não foi testada em um compositor real** neste executor. A confirmação visual deve vir do teste do usuário. Os testes GitHub Actions validam arquivos, PNG e sintaxe estática, não renderização QML.
+Antes de incluir animações CRT, medir consumo de RAM e FPS, comparar contra v0.5.1 e adicionar opção de movimento reduzido. O dock ainda pode sobrepor janelas devido a `ExclusionMode.Ignore` e precisa de uma decisão técnica para o canvas infinito.

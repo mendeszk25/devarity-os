@@ -57,6 +57,20 @@ class ShellStructureTests(unittest.TestCase):
         self.assertIn("Keys.onDownPressed", menu)
         self.assertIn("onAccepted", menu)
 
+    def test_underground_frame_is_lightweight(self):
+        frame = (BASE / "TechFrame.qml").read_text()
+        for forbidden in ("ShaderEffect", "Timer {", "RotationAnimation", "NumberAnimation", "SequentialAnimation"):
+            self.assertNotIn(forbidden, frame)
+        for component in ("Topbar.qml", "Dock.qml", "AppMenu.qml"):
+            self.assertIn("TechFrame { anchors.fill: parent;", (BASE / component).read_text())
+        self.assertIn("DVR.06", (BASE / "AppMenu.qml").read_text())
+        self.assertIn("SYSTEM INTERFACE / 0.6", (BASE / "Topbar.qml").read_text())
+        # Keep launcher, filtering, and Enter launch unchanged.
+        menu = (BASE / "AppMenu.qml").read_text()
+        self.assertIn("DesktopEntries.applications.values", menu)
+        self.assertIn("entry.execute()", menu)
+        self.assertIn("onAccepted", menu)
+
     def test_launcher_and_safety(self):
         dock = (BASE / "Dock.qml").read_text()
         for cmd in ("kitty", "dolphin", "fuzzel"):

@@ -1,4 +1,4 @@
-// Devarity Shell 0.5 — branded industrial command dock.
+// Devarity Shell 0.6 — branded underground command dock.
 // Four real actions, no placeholder buttons.
 import QtQuick
 import Quickshell
@@ -46,7 +46,7 @@ PanelWindow {
             anchors.right: parent.right
             anchors.rightMargin: 15
             y: 8
-            text: "CTRL_04"
+            text: "DVR/04"
             font.family: Theme.mono
             font.pixelSize: 9
             color: Theme.blue
@@ -118,4 +118,5 @@ PanelWindow {
             }
         }
     }
+    TechFrame { anchors.fill: parent; compact: true }
 }
